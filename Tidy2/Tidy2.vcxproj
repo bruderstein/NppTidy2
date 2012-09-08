@@ -56,7 +56,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libtidy.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)tidylib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(TargetPath)" "$(NOTEPADPLUSPLUSPATH)\plugins"</Command>
@@ -77,15 +78,27 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>libtidy.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)tidylib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "$(NOTEPADPLUSPLUSPATH)\plugins"
+md "$(OutDir)doc"
+md "$(OutDir)doc\Tidy2"
+copy "$(SolutionDir)tidy-html5\quickref.html" $(OutDir)doc\Tidy2
+copy "$(SolutionDir)tidy-html5\tidy.css" $(OutDir)doc\Tidy2
+copy "$(SolutionDir)LICENSE" $(OutDir)doc\Tidy2</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\tidy-html5\include\tidy.h" />
     <ClInclude Include="AboutDialog.h" />
     <ClInclude Include="NppInterface\Notepad_plus_msgs.h" />
     <ClInclude Include="NppInterface\PluginInterface.h" />
+    <ClInclude Include="NppInterface\Scintilla.h" />
     <ClInclude Include="NppInterface\StaticDialog.h" />
     <ClInclude Include="NppInterface\Window.h" />
     <ClInclude Include="PluginDetails.h" />

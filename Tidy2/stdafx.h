@@ -13,7 +13,7 @@
 #include <string.h>
 #include <tchar.h>
 #include <shlwapi.h>
-
+#include <ShellAPI.h>
 
 #include "NppInterface/PluginInterface.h"
 #include "NppInterface/Notepad_plus_msgs.h"

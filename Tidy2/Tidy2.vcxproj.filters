@@ -54,6 +54,12 @@
     <ClInclude Include="PluginMain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\tidy-html5\include\tidy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NppInterface\Scintilla.h">
+      <Filter>Header Files\NppInterface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
