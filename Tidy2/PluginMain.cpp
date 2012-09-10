@@ -325,6 +325,9 @@ void doTidy(const char *configName)
 
 		outputSink.putByte = putByte;
 		outputSink.sinkData = &writeContext;
+		
+		
+		tidyCleanAndRepair(tidyDoc);
 
 		tidySaveSink(tidyDoc, &outputSink);
 		int errorCount = tidyErrorCount(tidyDoc);

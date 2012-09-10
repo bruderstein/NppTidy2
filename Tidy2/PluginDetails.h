@@ -1,9 +1,9 @@
 
-#define PLUGIN_VERSION_COMMA		0,1,0,0
+#define PLUGIN_VERSION_COMMA		0,2,0,0
 
-#define PLUGIN_VERSION_COMMA_TEXT   "0,1,0,0"
+#define PLUGIN_VERSION_COMMA_TEXT   "0,2,0,0"
 
-#define PLUGIN_VERSION_POINT        "0.1.0.0"
+#define PLUGIN_VERSION_POINT        "0.2.0.0"
 
 #define PLUGIN_NAME					"Tidy2"
 
