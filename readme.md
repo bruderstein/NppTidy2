@@ -20,7 +20,7 @@ The build is now done using [CMake][2] to generate native build files. It suppor
  
 ## Installation
 
-Just copy the Tidy2.dll to your Notepad++\plugins directory. It is a good idea the backup any current Tidy2.dll in case your build is rejected by Notepad++ ;=() And remember you may have to do this copying with `administartion` priviledges, depending on where Notepad++ is installed.
+Just copy the Tidy2.dll to your Notepad++\plugins directory. It is a good idea the backup any current Tidy2.dll in case your build is rejected by Notepad++ ;=() And remember you may have to do this copying with `administration` priviledges, depending on where Notepad++ is installed.
 
 Ideally add quickref.html which should be in the tidy-html5\documentation folder to the doc folder to Notepad++\plugins directory too, so you will have the correct documentation, and the "Show Config Help" option will show the documentation that applies to your version (rather than simply the latest on the web).
 
