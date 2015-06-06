@@ -1,0 +1,8 @@
+*.vcxproj
+*.vcxproj.filters
+CMakeCache.txt
+CMakeFiles/*
+*.sln
+bldlog-1.txt
+cmake_install.cmake
+tidy-html5/*
