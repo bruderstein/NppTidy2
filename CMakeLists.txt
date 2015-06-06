@@ -2,11 +2,14 @@
 # by vcproj05.pl from F:\Projects\npptidy2\Tidy2.sln
 
 # local CMake Scripts.
-# set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMakeModules )
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMakeModules )
 
 cmake_minimum_required (VERSION 2.8.8)
 
 project (Tidy2)
+
+option( USE_EXTERNAL_TIDY "Set OFF to not search for an installed lib tidy."         ON )
+option( USE_SUBDIRECTORY "Set OFF to comile directly from this root CMakeLists.txt." ON )
 
 # Setup MSVC 3rd party directories if available and needed
 # include( ConfigureMsvc3rdParty )
@@ -44,7 +47,29 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${WARNING_FLAGS_C} ${MSVC_FLAGS} -D_REENTRAN
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${WARNING_FLAGS_CXX} ${MSVC_FLAGS} -D_REENTRANT ${BOOST_CXX_FLAGS}")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${MSVC_LD_FLAGS}")
 
-### add_subdirectory( tidy-html5 ) # DID NOT WORK??? CPack has a problem, so...
+if (USE_EXTERNAL_TIDY)
+    #  TIDY_FOUND          - True if tidy found.
+    #  TIDY_INCLUDE_DIRS   - where to find tidy.h, etc.
+    #  TIDY_LIBRARIES      - List of libraries when using tidy.
+    find_package( Tidy )
+    if (TIDY_FOUND)
+        message(STATUS "*** Found EXTERNAL Tidy lib ${TIDY_LIBRARIES} inc ${TIDY_INCLUDE_DIRS}")
+        list( APPEND add_LIBS ${TIDY_LIBRARIES} )
+        include_directories( ${TIDY_INCLUDE_DIRS} )
+    else ()
+        message(STATUS "*** External Tidy library NOT FOUND" )
+    endif ()
+endif ()
+
+if (NOT TIDY_FOUND)
+# =======================================================================
+# =======================================================================
+if (USE_SUBDIRECTORY)
+###########################################################################    
+    add_subdirectory( tidy-html5 ) # Needed modifcation to remove CPack etc...
+###########################################################################    
+else ()
+###########################################################################    
 set(LIB_NAME tidy5)
 
 file(READ tidy-html5/version.txt versionFile)
@@ -110,6 +135,13 @@ set_target_properties( ${name} PROPERTIES
     OUTPUT_NAME ${LIB_NAME}s
     )
 list ( APPEND add_LIBS ${name} )
+###########################################################################    
+endif ()
+include_directories( tidy-html5/include )
+
+# =======================================================================
+# =======================================================================
+endif ()
 
 # Adding 2 of 7 defines indicated.
 add_definitions( 
@@ -123,12 +155,12 @@ add_definitions(
 include_directories( 
     Tidy2
     Tidy2/NppInterface
-    tidy-html5/include 
     )
 
 ### 1 DLL #############################################
 # Project [Tidy2], type [Application], 6 C/C++, 12 Hdrs, 0 Other, 0 INCS, 7 DEFS
 # File dir [F:\Projects\npptidy2\Tidy2\], out [F:\Projects\npptidy2], rel = [Tidy2\]
+#  tidy-html5/include/tidy.h
 set(name Tidy2)
 set(dir Tidy2)
 set( ${name}_SRCS
@@ -140,7 +172,6 @@ set( ${name}_SRCS
     ${dir}/stdafx.cpp
     )
 set( ${name}_HDRS
-    tidy-html5/include/tidy.h
     ${dir}/AboutDialog.h
     ${dir}/NppInterface/Notepad_plus_msgs.h
     ${dir}/NppInterface/PluginInterface.h
@@ -154,6 +185,7 @@ set( ${name}_HDRS
     ${dir}/targetver.h )
 add_library( ${name} SHARED ${${name}_SRCS} ${${name}_HDRS}  )
 target_link_libraries( ${name} ${add_LIBS} )
+message(STATUS "*** target_link_libraries( ${name} ${add_LIBS} )")
 ###list(APPEND add_LIBS ${name})
 
 # deal with install, if required
