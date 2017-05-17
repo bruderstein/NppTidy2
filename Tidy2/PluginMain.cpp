@@ -6,9 +6,11 @@
 #include "PluginMain.h"
 #include "AboutDialog.h"
 #include "PluginDetails.h"
+#ifdef USE_LOCAL_TIDY
 #include "../tidy-html5/include/tidy.h"
-
-
+#else
+#include <tidy.h>
+#endif
 
 /* Info for Notepad++ */
 CONST TCHAR TCHAR_PLUGIN_NAME[]	= _T(PLUGIN_NAME);
