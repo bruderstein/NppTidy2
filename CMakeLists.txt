@@ -11,6 +11,28 @@ project (Tidy2)
 option( USE_EXTERNAL_TIDY "Set OFF to not search for an installed lib tidy."         ON )
 option( USE_SUBDIRECTORY "Set OFF to comile directly from this root CMakeLists.txt." ON )
 
+file(READ version.txt versionFile)
+if (NOT versionFile)
+    message(FATAL_ERROR "Unable to determine Tidy2 version. version.txt file is missing.")
+endif()
+
+string(STRIP "${versionFile}" VERSION_TEXT)
+string(REGEX REPLACE "(.*)[\r\n|\n](.*)" "\\1" TIDY2_VERSION ${VERSION_TEXT})
+string(REGEX REPLACE "(.*)[\r\n|\n](.*)" "\\2" TIDY2_DATE ${VERSION_TEXT})
+
+# establish version number
+if (TIDY2_VERSION)
+    add_definitions( -DTIDY2_VERSION="${TIDY2_VERSION}" )
+else ()
+    message(FATAL_ERROR "*** FAILED to get TIDY2_VERSION from version.txt!")
+endif ()    
+# establish version date
+if (TIDY2_DATE)
+    add_definitions( -DTIDY2_DATE="${TIDY2_DATE}" )
+else ()
+    message(FATAL_ERROR "*** FAILED to get TIDY2_DATE from version.txt!")
+endif ()
+
 # Setup MSVC 3rd party directories if available and needed
 # include( ConfigureMsvc3rdParty )
 
