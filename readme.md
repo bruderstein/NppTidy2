@@ -2,7 +2,7 @@
 
 This is a quick and dirty plugin to add easy HTML tidying to Notepad++, given the few issues reported with the existing Tidy plugin.
 
-This uses the excellent tidy-html5 from [https://github.com/htacg/tidy-html5][1] Make sure you update the tidy-html4 module, to get the latest source.
+This uses the excellent tidy-html5 from [https://github.com/htacg/tidy-html5][1] Make sure you update the `tidy-html5` module, to get the latest source, **OR** build using a separate clone, build and install of HTML Tidy.
 
 The code desperately needs a tidy up, this is a few hours work just to solve the current problems.
 
@@ -24,6 +24,7 @@ Just copy the Tidy2.dll to your Notepad++\plugins directory. It is a good idea t
 
 Ideally add quickref.html which should be in the `Notepad++\plugins\doc\Tidy2\` folder, so you will have the correct documentation, and the "Show Config Help" option will show the documentation that applies to your version (rather than simply the latest on the web).
 
-Further, the config folder contains 3 sample tidy config files. These should be checked, and copied to `C:\Users\<user>\AppData\Roaming\Notepad++\plugins\config\.`. They can be edited in NotePad++ to contain what ever you want.
+Further, the config folder contains 3 sample tidy config files. These should be checked, and copied to `C:\Users\<user>\AppData\Roaming\Notepad++\plugins\config\.`. They can be edited in NotePad++ to contain what ever tidy options you want.
 
-; eof
+; eof 20170519
+
