@@ -4,7 +4,7 @@
 @set VCVERS=14
 @set GENERATOR=Visual Studio %VCVERS% Win64
 @REM 20160324 - Change to relative, and use choice
-@set TMPPRJ=test-mmap
+@set TMPPRJ=Tidy2
 @echo Build %TMPPRJ% project, in 64-bits
 @set TMPLOG=bldlog-1.txt
 @set BLDDIR=%CD%
@@ -60,6 +60,8 @@
 @goto RPT
 :GOTCMD
 
+@REM This can be removed. It only check is MSVC is
+@REM running, which is NOT really needed...
 @call chkmsvc %TMPPRJ%
 
 @echo Begin %DATE% %TIME%, output to %TMPLOG%
