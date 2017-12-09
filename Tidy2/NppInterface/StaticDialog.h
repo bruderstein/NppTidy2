@@ -20,7 +20,7 @@
 #include "Window.h"
 #include "Notepad_plus_msgs.h"
 
-enum class PosAlign { left, right, top, bottom };
+enum PosAlign { left, right, top, bottom };
 
 struct DLGTEMPLATEEX {
       WORD   dlgVer;
