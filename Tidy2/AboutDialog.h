@@ -15,7 +15,7 @@ public:
 	};
 
     void doDialog();
-    BOOL CALLBACK AboutDialog::run_dlgProc(UINT Message, WPARAM wParam, LPARAM lParam);
+    INT_PTR CALLBACK AboutDialog::run_dlgProc(UINT Message, WPARAM wParam, LPARAM lParam);
 
 private:	
 	NppData _nppData;

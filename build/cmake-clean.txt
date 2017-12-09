@@ -1,0 +1,4 @@
+bldlog-1.txt
+CPackConfig.cmake
+CPackSourceConfig.cmake
+tidy-html5
